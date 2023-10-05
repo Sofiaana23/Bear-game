@@ -61,3 +61,15 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+AnaSofia/.DS_Store
+
+AnaSofia/.vsconfig
+
+AnaSofia/Assets/.DS_Store
+
+AnaSofia/Library/
+
+AnaSofia/Logs/
+
+AnaSofia/UserSettings/
