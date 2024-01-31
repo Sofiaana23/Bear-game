@@ -19,21 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+       
         
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), yVelocity, 0);
-
-        //Debug.Log(move);
-
-        //if (move.x >= .1f)
-        //{
-        //    this.transform.Rotate(0,0,0);
-        //}
-
-        //if (move.x <= 1f)
-        //{
-        //    this.transform.Rotate(180, 0, 0);
-        //}
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
@@ -50,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         {
             art.transform.rotation = rotationLeft.transform.rotation;
         }
-        else
+        if (Input.GetAxis("Horizontal") < 0)
         {
             art.transform.rotation = rotationRight.transform.rotation;
         }
@@ -60,16 +48,17 @@ public class PlayerMovement : MonoBehaviour
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
 
-            yVelocity = 0f;
+            yVelocity = -0.5f;
             yVelocity = jumpHeight;
-            
+            jumpCount++;   
 
         }
         else
         {
-            if (controller.isGrounded && yVelocity <= 0f)
+            if (controller.isGrounded && yVelocity <= -0.5f)
             {
-                yVelocity = 0f;
+                yVelocity = -0.5f;
+                jumpCount = 0;
             }
             else
             {
@@ -77,11 +66,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        transform.position = new Vector3(transform.position.x, transform.position.y, 8.13f);
+
         if (jumpCount < 2 && controller.isGrounded != true && Input.GetKeyDown(KeyCode.Space) || jumpCount < 2 && controller.isGrounded != true && Input.GetKeyDown(KeyCode.W))
         {
             yVelocity = 0f;
             yVelocity = jumpHeight + .5f;
-            
+            jumpCount++;
+
         }
     }
 }
