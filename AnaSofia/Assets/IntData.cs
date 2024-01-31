@@ -6,6 +6,7 @@ using UnityEngine;
 public class IntData : ScriptableObject
 {
     public int value;
+    public int value2;
 
     public void ScoreChange(int num)
     {
