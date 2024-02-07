@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI highscoretext;
     public float timer;
     public TextMeshProUGUI timertext;
+    public GameObject gameOverScreen;
 
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         score.value = 0;
     }
 
@@ -21,9 +24,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
+        timer = (float)System.Math.Round(timer, 2);
         if (timer <= 0)
         {
-            Debug.Log("you starved");
+            Time.timeScale = 0f;
+            gameOverScreen.SetActive(true);
         }
         timertext.text = timer.ToString();
         scoretext.text = score.value.ToString();
@@ -34,5 +39,10 @@ public class GameManager : MonoBehaviour
             score.value2 = score.value;
         }
     }
-    
+
+    public void Restart()
+    {
+        string Level = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(Level);
+    }
 }
