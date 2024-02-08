@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
         score.value = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timer -= Time.deltaTime;
         timer = (float)System.Math.Round(timer, 2);
@@ -31,6 +30,10 @@ public class GameManager : MonoBehaviour
             gameOverScreen.SetActive(true);
         }
         timertext.text = timer.ToString();
+    }
+    // Update is called once per frame
+    void Update()
+    {
         scoretext.text = score.value.ToString();
         highscoretext.text = score.value2.ToString();
 
