@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public IntData score;
     public TextMeshProUGUI scoretext;
     public TextMeshProUGUI highscoretext;
-    public float timer;
+    public FloatData timer;
     public TextMeshProUGUI timertext;
     public GameObject gameOverScreen;
 
@@ -18,18 +18,19 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         score.value = 0;
+        timer.value = 10f;
     }
 
     void FixedUpdate()
     {
-        timer -= Time.deltaTime;
-        timer = (float)System.Math.Round(timer, 2);
-        if (timer <= 0)
+        timer.value -= Time.deltaTime;
+        timer.value = (float)System.Math.Round(timer.value, 2);
+        if (timer.value <= 0)
         {
             Time.timeScale = 0f;
             gameOverScreen.SetActive(true);
         }
-        timertext.text = timer.ToString();
+        timertext.text = timer.value.ToString();
     }
     // Update is called once per frame
     void Update()
