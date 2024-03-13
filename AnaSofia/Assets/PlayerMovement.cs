@@ -17,6 +17,13 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator;
 
+    private AudioSource source;
+    public AudioClip[] SFX;
+
+    private void Start()
+    {
+        source = GetComponent<AudioSource>();
+    }
     void Update()
     {
        
@@ -37,10 +44,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0)
         {
             art.transform.rotation = rotationLeft.transform.rotation;
+            
         }
         if (Input.GetAxis("Horizontal") < 0)
         {
             art.transform.rotation = rotationRight.transform.rotation;
+            
         }
         
 
@@ -75,6 +84,13 @@ public class PlayerMovement : MonoBehaviour
             jumpCount++;
 
         }
+
+       
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        source.PlayOneShot(SFX[0]);
     }
 }
 

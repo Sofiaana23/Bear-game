@@ -9,6 +9,7 @@ public class fruit : MonoBehaviour
     void Start()
     {
         Destroy(this.gameObject, lifetime);
+
     }
 
     // Update is called once per frame
@@ -19,6 +20,9 @@ public class fruit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         Destroy(this.gameObject); 
     }
+
+  
 }
