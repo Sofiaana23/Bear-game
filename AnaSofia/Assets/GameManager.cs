@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public FloatData timer;
     public TextMeshProUGUI timertext;
     public GameObject gameOverScreen;
+    public GameObject[] Rain;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         score.value = 0;
         timer.value = 10f;
+        InvokeRepeating("RainManager", 6f, 2f);
     }
 
     void FixedUpdate()
@@ -48,5 +50,11 @@ public class GameManager : MonoBehaviour
     {
         string Level = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(Level);
+    }
+
+    void RainManager()
+    {
+        int i = Random.Range(0, Rain.Length);
+        Rain[i].SetActive(!Rain[i].activeSelf);
     }
 }
